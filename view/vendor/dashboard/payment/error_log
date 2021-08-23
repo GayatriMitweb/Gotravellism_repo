@@ -1,3 +1,0 @@
-[25-Nov-2020 14:09:54 UTC] PHP Parse error:  syntax error, unexpected '" download data-toggle="' (T_CONSTANT_ENCAPSED_STRING) in /home/itourscloud/public_html/gotravellism/view/vendor/dashboard/payment/payment_list_reflect.php on line 70
-[05-Dec-2020 20:45:10 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/itourscloud/public_html/gotravellism/view/vendor/dashboard/payment/payment_list_reflect.php on line 66
-[05-Dec-2020 20:45:20 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/itourscloud/public_html/gotravellism/view/vendor/dashboard/payment/payment_list_reflect.php on line 66

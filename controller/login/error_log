@@ -1,7 +1,0 @@
-[21-Apr-2021 15:52:28 Asia/Kolkata] PHP Fatal error:  Call to undefined function mcrypt_encrypt() in /home/itourscloud/public_html/gotravellism/model/encrypt_decrypt.php on line 11
-[21-Apr-2021 15:53:12 Asia/Kolkata] PHP Fatal error:  Call to undefined function mcrypt_encrypt() in /home/itourscloud/public_html/gotravellism/model/encrypt_decrypt.php on line 11
-[21-Apr-2021 16:13:48 Asia/Kolkata] PHP Fatal error:  Call to undefined function mcrypt_encrypt() in /home/itourscloud/public_html/gotravellism/model/encrypt_decrypt.php on line 11
-[21-Apr-2021 16:24:09 Asia/Kolkata] PHP Fatal error:  Call to undefined function mcrypt_encrypt() in /home/itourscloud/public_html/gotravellism/model/encrypt_decrypt.php on line 11
-[21-Apr-2021 16:27:01 Asia/Kolkata] PHP Fatal error:  Call to undefined function mcrypt_encrypt() in /home/itourscloud/public_html/gotravellism/model/encrypt_decrypt.php on line 11
-[21-Apr-2021 16:32:32 Asia/Kolkata] PHP Fatal error:  Call to undefined function mcrypt_encrypt() in /home/itourscloud/public_html/gotravellism/model/encrypt_decrypt.php on line 11
-[21-Apr-2021 16:36:55 Asia/Kolkata] PHP Fatal error:  Call to undefined function mcrypt_encrypt() in /home/itourscloud/public_html/gotravellism/model/encrypt_decrypt.php on line 11
