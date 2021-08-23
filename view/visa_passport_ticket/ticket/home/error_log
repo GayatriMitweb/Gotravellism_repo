@@ -1,0 +1,1 @@
+[16-Sep-2020 12:10:21 Asia/Kolkata] PHP Fatal error:  Call to undefined method PDF::SetWidths() in /home/itourscloud/public_html/benchmark/view/visa_passport_ticket/ticket/home/e_ticket.php on line 82
