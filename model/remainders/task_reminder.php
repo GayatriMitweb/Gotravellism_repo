@@ -17,6 +17,7 @@ while($row_tasks = mysql_fetch_assoc($sq_task)){
     $due_date =$row_tasks['due_date'];
     $remind_by = $row_tasks['remind_by'];
     $task_type = $row_tasks['task_type'];
+    $project_name = $row_tasks['project_name'];
 
 
     $sq_emp_info = mysql_fetch_assoc(mysql_query("select * from emp_master where emp_id='$row_tasks[emp_id]'"));
@@ -24,10 +25,10 @@ while($row_tasks = mysql_fetch_assoc($sq_task)){
     $email_id = $sq_emp_info['email_id'];
     $mobile_no = $sq_emp_info['mobile_no'];
      
-    task_mail($emp_name,$email_id,$task,$due_date,$mobile_no,$remind_by,$task_type);
+    task_mail($emp_name,$email_id,$task,$due_date,$mobile_no,$remind_by,$task_type, $project_name);
 }
 
-function task_mail($emp_name,$email_id,$task,$due_date,$mobile_no,$remind_by,$task_type)
+function task_mail($emp_name,$email_id,$task,$due_date,$mobile_no,$remind_by,$task_type, $project_name)
 {
    global $app_email_id, $app_name, $app_contact_no, $admin_logo_url, $app_website;
     global $mail_em_style, $mail_font_family, $mail_strong_style, $mail_color;
@@ -39,11 +40,12 @@ function task_mail($emp_name,$email_id,$task,$due_date,$mobile_no,$remind_by,$ta
           <tr><td style="text-align:left;border: 1px solid #888888;">Tasks Name</td>   <td style="text-align:left;border: 1px solid #888888;">'.$task.'</td></tr>
           <tr><td style="text-align:left;border: 1px solid #888888;"> Deadline</td>   <td style="text-align:left;border: 1px solid #888888;" >'.date('d-m-Y H:i:s', strtotime($due_date)).'</td></tr>
           <tr><td style="text-align:left;border: 1px solid #888888;"> Service Name </td>   <td style="text-align:left;border: 1px solid #888888;" >'.$task_type.'</td></tr>
+          <tr><td style="text-align:left;border: 1px solid #888888;"> Project Name </td>   <td style="text-align:left;border: 1px solid #888888;" >'.$project_name.'</td></tr>
         </table>
       </tr>';
       
     $sms_content = "Hello ".$emp_name.". Your task reminder."." 
-Tasks : ".$task." , Due DateTime:".date('d-m-Y H:i:s', strtotime($due_date));
+Tasks : ".$task." , Project Name : ".$project_name.", Due DateTime:".date('d-m-Y H:i:s', strtotime($due_date));
 
 
     $subject = 'Task Reminder';

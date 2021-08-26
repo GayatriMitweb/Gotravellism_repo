@@ -12,6 +12,7 @@ public function tasks_master_save()
     $task_type_field_id = $_POST['task_type_field_id'];
     $task_status = 'Created';
     $branch_admin_id = $_POST['branch_admin_id'];
+    $project_name = mysql_real_escape_string($_POST['project_name']);
     $created_at = date('Y-m-d');
     $due_date = date('Y-m-d H:i', strtotime($due_date));
 
@@ -48,7 +49,7 @@ public function tasks_master_save()
     $task_id = $sq_max['max'] + 1;
 
     $task_name = addslashes($task_name);
-    $sq_task = mysql_query("insert into tasks_master ( task_id, emp_id, branch_admin_id, task_name, due_date, remind, remind_due_date, remind_by, task_type, task_type_field_id, task_status, created_at ) values ( '$task_id', '$assign_to', '$branch_admin_id', '$task_name', '$due_date', '$remind', '$remind_due_date', '$remind_by', '$task_type', '$task_type_field_id', '$task_status', '$created_at' )");
+    $sq_task = mysql_query("insert into tasks_master ( task_id, emp_id, branch_admin_id, task_name, due_date, remind, remind_due_date, remind_by, task_type, task_type_field_id, task_status, project_name, created_at ) values ( '$task_id', '$assign_to', '$branch_admin_id', '$task_name', '$due_date', '$remind', '$remind_due_date', '$remind_by', '$task_type', '$task_type_field_id', '$task_status', '$project_name','$created_at' )");
 
     if($sq_task){
     	echo "Task has been successfully saved.";
@@ -69,7 +70,8 @@ public function tasks_master_update()
     $remind  = $_POST['remind'];
     $remind_by  = $_POST['remind_by'];
     $task_type = $_POST['task_type'];
-    $task_type_field_id = $_POST['task_type_field_id'];
+    $project_name = $_POST['project_name'];
+    $task_type_field_id = mysql_real_escape_string($_POST['task_type_field_id']);
 
     $due_date = date('Y-m-d H:i', strtotime($due_date));
 
@@ -101,7 +103,7 @@ public function tasks_master_update()
     }
 
     $task_name = addslashes($task_name);
-    $sq_task = mysql_query("update tasks_master set emp_id='$assign_to', task_name='$task_name', due_date='$due_date', remind='$remind', remind_due_date='$remind_due_date', remind_by='$remind_by', task_type='$task_type', task_type_field_id='$task_type_field_id' where task_id='$task_id'");
+    $sq_task = mysql_query("update tasks_master set emp_id='$assign_to', task_name='$task_name', due_date='$due_date', remind='$remind', remind_due_date='$remind_due_date', remind_by='$remind_by', task_type='$task_type', task_type_field_id='$task_type_field_id', project_name='$project_name' where task_id='$task_id'");
 
     if($sq_task){
     	echo "Task has been successfully updated.";
@@ -145,6 +147,7 @@ public function tasks_master_clone()
     $remind  = $_POST['remind'];
     $remind_by  = $_POST['remind_by'];
     $task_type = $_POST['task_type'];
+    $project_name = $_POST['project_name'];
     $task_type_field_id = $_POST['task_type_field_id'];
     $task_status = 'Created';
 
@@ -184,7 +187,7 @@ public function tasks_master_clone()
     $task_id = $sq_max['max'] + 1;
 
 
-    $sq_task = mysql_query("insert into tasks_master ( task_id, emp_id, task_name, due_date, remind, remind_due_date, remind_by, task_type, task_type_field_id, task_status, reference_task_id, created_at ) values ( '$task_id', '$assign_to', '$task_name', '$due_date', '$remind', '$remind_due_date', '$remind_by', '$task_type', '$task_type_field_id', '$task_status', '$reference_task_id', '$created_at' )");
+    $sq_task = mysql_query("insert into tasks_master ( task_id, emp_id, task_name, due_date, remind, remind_due_date, remind_by, task_type, task_type_field_id, task_status, reference_task_id, project_name,created_at ) values ( '$task_id', '$assign_to', '$task_name', '$due_date', '$remind', '$remind_due_date', '$remind_by', '$task_type', '$task_type_field_id', '$task_status', '$reference_task_id','$project_name', '$created_at' )");
 
     if($sq_task){
     	echo "Task has been succcessfully saved.";

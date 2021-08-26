@@ -141,7 +141,11 @@ $sq_task = mysql_fetch_assoc(mysql_query("select * from tasks_master where task_
             </select>
           </div>
         </div>
-
+        <div class="row">
+          <div class="col-sm-6 mg_bt_10">
+            <input type="text" name="project_name1" id ="project_name1" placeholder="Project Name" title="Project Name" value="<?= $sq_task['project_name'] ?>">
+          </div>
+        </div>
         <?php $hidden_state = ($sq_task['task_type']=="Group Tour") ? "" : "hidden"; ?>
         <div class="row mg_bt_20 <?= $hidden_state ?> tour_group_id">
           <div class="col-md-6">

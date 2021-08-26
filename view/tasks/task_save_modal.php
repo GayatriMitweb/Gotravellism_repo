@@ -85,6 +85,9 @@ $branch_status = $sq['branch_status']
 
             </select>
           </div>
+          <div class="col-sm-6 mg_bt_10">
+            <input type="text" name="project_name" id ="project_name" placeholder="Project Name" title="Project Name">
+          </div>
           <div class="col-sm-6 mg_bt_10 hidden booking_id">
             <select id="booking_id" name="booking_id" style="width:100%"> 
                 <option value="">*Select File Number</option>
@@ -169,6 +172,7 @@ $(function(){
             var remind_by  = $('#remind_by').val();
             var branch_admin_id = $('#branch_admin_id1').val();
             var task_type = $('#task_type').val();
+            var project_name = $('#project_name').val();
   
             if(task_type=="Other"){
               var task_type_field_id = "";
@@ -192,7 +196,7 @@ $(function(){
             $.ajax({
               type:'post',
               url: base_url+'controller/tasks/task_save.php',
-              data:{ task_name : task_name, due_date : due_date, assign_to : assign_to, remind : remind, remind_by : remind_by, task_type : task_type, task_type_field_id : task_type_field_id , branch_admin_id : branch_admin_id},
+              data:{ task_name : task_name, due_date : due_date, assign_to : assign_to, remind : remind, remind_by : remind_by, task_type : task_type, task_type_field_id : task_type_field_id , branch_admin_id : branch_admin_id, project_name : project_name},
               success:function(result){
                 msg_alert(result);
                 reset_form('frm_task_save');

@@ -143,8 +143,14 @@ $sq_task = mysql_fetch_assoc(mysql_query("select * from tasks_master where task_
               ?>
             </select>
           </div>
+          
         </div>
-
+        <div class="row">
+          <div class="col-sm-6 mg_bt_10">
+            <input type="text" name="project_name1" id ="project_name1" placeholder="Project Name" title="Project Name" value="<?= $sq_task['project_name'] ?>">
+          </div>
+        </div>
+        
         <?php $hidden_state = ($sq_task['task_type']=="Group Tour") ? "" : "hidden"; ?>
         <div class="row <?= $hidden_state ?> tour_group_id">
           <div class="col-sm-6 mg_bt_10">
@@ -211,6 +217,7 @@ $(function(){
             var assign_to  = $('#assign_to1').val();
             var remind  = $('#remind1').val();
             var remind_by  = $('#remind_by1').val();
+            var project_name = $('#project_name1').val();
 
             var task_type = $('#task_type1').val();
   
@@ -235,7 +242,7 @@ $(function(){
             $.ajax({
               type:'post',
               url: base_url+'controller/tasks/task_update.php',
-              data:{ task_id : task_id, task_name : task_name, due_date : due_date, assign_to : assign_to, remind : remind, remind_by : remind_by, task_type : task_type, task_type_field_id : task_type_field_id },
+              data:{ task_id : task_id, task_name : task_name, due_date : due_date, assign_to : assign_to, remind : remind, remind_by : remind_by, task_type : task_type, task_type_field_id : task_type_field_id, project_name : project_name },
               success:function(result){
                 msg_alert(result);
                 $('#tasks_update_modal').modal('hide');

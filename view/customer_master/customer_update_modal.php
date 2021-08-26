@@ -77,18 +77,18 @@ $email_id = $encrypt_decrypt->fnDecrypt($sq_customer['email_id'], $secret_key);
           </div>
           <div class="row mg_bt_10">              
               <div class="col-sm-4 col-xs-12">
-                <input type="text" id="cust_pan" onchange="validate_alphanumeric(this.id);" name="cust_pan"  placeholder="PAN/TAN No" title="PAN/TAN No" value="<?= $sq_customer['pan_no'] ?>" style="text-transform: uppercase;">
+                <input type="text" id="cust_pan1" onchange="validate_alphanumeric(this.id);" name="cust_pan"  placeholder="PAN/TAN No" title="PAN/TAN No" value="<?= $sq_customer['pan_no'] ?>" style="text-transform: uppercase;">
               </div>
               <div class="col-sm-4 col-xs-12">
-                <input type="text" id="id_no" onchange="validate_alphanumeric(this.id);" name="id_no"  placeholder="ID Number" value="<?= $sq_customer['id_no'] ?>" title="ID Number" style="text-transform: uppercase;">
+                <input type="text" id="id_no1" onchange="validate_alphanumeric(this.id);" name="id_no"  placeholder="ID Number" value="<?= $sq_customer['id_no'] ?>" title="ID Number" style="text-transform: uppercase;">
               </div>
               <div class="col-sm-4 col-xs-12">
-                <input type="text" id="id_type" onchange="validate_alphanumeric(this.id);" name="id_type"  placeholder="ID Type" value="<?= $sq_customer['id_type'] ?>" title="ID Type" style="text-transform: uppercase;">
+                <input type="text" id="id_type1" onchange="validate_alphanumeric(this.id);" name="id_type"  placeholder="ID Type" value="<?= $sq_customer['id_type'] ?>" title="ID Type" style="text-transform: uppercase;">
               </div>
             </div>
             <div class="row">
               <div class="col-sm-4 col-xs-12">
-                <input type="text" id="mem_no" onchange="validate_alphanumeric(this.id);" name="mem_no"  placeholder="Membership Number" value="<?= $sq_customer['mem_no'] ?>" title="Membership Number" style="text-transform: uppercase;">
+                <input type="text" id="mem_no1" onchange="validate_alphanumeric(this.id);" name="mem_no"  placeholder="Membership Number" value="<?= $sq_customer['mem_no'] ?>" title="Membership Number" style="text-transform: uppercase;">
               </div>
               <div  class="div-upload col-md-2" style="margin-bottom: 5px;"  id="div_upload_button">
                 <div id="pro_upload_g1" class="upload-button1"><span>Profile Photo</span></div>

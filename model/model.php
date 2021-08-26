@@ -18,13 +18,13 @@ function myErrorHandler($errno, $errstr, $errfile, $errline){
 }
 $localIP = getHostByName(getHostName());
 
-$connection=mysql_connect("localhost","itourscl_gotrav","8djgSnl{2yH@");
+$connection=mysql_connect("localhost","root","");
 if(!$connection){ echo "Unable To make Connection."; }
 
-$db_connect=mysql_select_db("itourscl_gotravellism");
+$db_connect=mysql_select_db("gotravellism");
 if(!$db_connect) { echo "Database Not Connected."; }
 
-define('BASE_URL', 'https://itourscloud.com/gotravellism/');
+define('BASE_URL', 'http://localhost/gotravellism/');
 mysql_query("SET SESSION sql_mode = ''");
 mysql_set_charset('utf8',$connection);
 
