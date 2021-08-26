@@ -25,6 +25,15 @@ $db_connect=mysql_select_db("gotravellism");
 if(!$db_connect) { echo "Database Not Connected."; }
 
 define('BASE_URL', 'http://localhost/gotravellism/');
+
+// $connection=mysql_connect("localhost","itourscl_gotrav","8djgSnl{2yH@");
+// if(!$connection){ echo "Unable To make Connection."; }
+
+// $db_connect=mysql_select_db("itourscl_gotravellism");
+// if(!$db_connect) { echo "Database Not Connected."; }
+
+// define('BASE_URL', 'https://itourscloud.com/gotravellism/');
+
 mysql_query("SET SESSION sql_mode = ''");
 mysql_set_charset('utf8',$connection);
 
