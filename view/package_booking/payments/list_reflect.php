@@ -51,7 +51,7 @@ $branch_status = $_POST['branch_status'];
 		if($role == "B2b"){
 			$query .= " and booking_id in (select booking_id from package_tour_booking_master where emp_id ='$emp_id')";
 		}
-		include "../../../model/app_settings/branchwise_filteration.php";
+		// include "../../../model/app_settings/branchwise_filteration.php";
 		$query .=" order by payment_id desc";
 		$sq_payment = mysql_query($query);
 		while($row_payment = mysql_fetch_assoc($sq_payment)){
