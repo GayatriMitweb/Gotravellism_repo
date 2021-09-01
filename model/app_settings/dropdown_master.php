@@ -7,7 +7,7 @@ function get_group_booking_dropdown($role, $branch_admin_id, $branch_status,$emp
   <option value="" >Select Booking</option>
   <?php 
     $query = "select * from tourwise_traveler_details where 1 ";
-    include "branchwise_filteration.php";
+    // include "branchwise_filteration.php";
     $query .= " and tour_group_status != 'Cancel'";
     $query .= " order by id desc";
     $sq_booking = mysql_query($query);
@@ -36,7 +36,7 @@ function get_package_booking_dropdown($role, $branch_admin_id, $branch_status,$e
   <option value="">*Select Booking</option>
   <?php
       $query = "select * from package_tour_booking_master where 1 ";
-      include "branchwise_filteration.php";
+      // include "branchwise_filteration.php";
       $query .= " order by booking_id desc";
       $sq_booking = mysql_query($query);
       while($row_booking = mysql_fetch_assoc($sq_booking)){

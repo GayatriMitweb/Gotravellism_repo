@@ -48,6 +48,12 @@ public function customer_master_save()
       echo "error--Sorry, The Company has already been taken.";
       exit;
     }
+    $cust_count = mysql_num_rows(mysql_query("select * from customer_master where contact_no='$contact_no'"));
+    if($cust_count>0)
+    {
+      echo "error--Sorry, The Customer already exist.";
+      exit;
+    }
 
 	$sq_max = mysql_fetch_assoc(mysql_query("select max(customer_id) as max from customer_master"));
 	$customer_id = $sq_max['max'] + 1;

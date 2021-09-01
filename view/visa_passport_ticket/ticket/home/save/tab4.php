@@ -68,7 +68,7 @@ $('#frm_tab4').validate({
 	},
 
 	submitHandler:function(form){
-
+		$('#btn_ticket_save').prop('disabled', true);
 		var base_url = $('#base_url').val();
 		var customer_id = $('#customer_id').val();
 		var cust_first_name = $('#cust_first_name').val();
@@ -93,16 +93,7 @@ $('#frm_tab4').validate({
 		var branch_admin_id = $('#branch_admin_id1').val();
 		var financial_year_id = $('#financial_year_id').val();
  		
- 		//New Customer save
-		if(customer_id == '0'){
-		    $.ajax({
-		        type: 'post',
-		        url: base_url+'controller/customer_master/customer_save.php',
-		        data:{ first_name : cust_first_name, middle_name : cust_middle_name, last_name : cust_last_name, gender : gender, birth_date : cust_birth_date, age : age, contact_no : contact_no, email_id : email_id, address : address,address2 : address2,city:city,  active_flag : active_flag ,service_tax_no : service_tax_no, landline_no : landline_no, alt_email_id : alt_email_id,company_name : company_name, cust_type : cust_type,state : state, branch_admin_id : branch_admin_id},
-		        success: function(result){
-		        }
-		    });
-		}
+ 		
 		//Flight Save
 		var emp_id = $('#emp_id').val();
 		var tour_type = $('#tour_type').val();
@@ -265,13 +256,42 @@ $('#frm_tab4').validate({
 		var special_note_arr = getDynFields('special_note');
 
 		var payment_date = $('#payment_date').val();
-		$.post(base_url+'view/load_data/finance_date_validation.php', { check_date: payment_date }, function(data){
-		if(data !== 'valid'){
-			error_msg_alert("The Payment date does not match between selected Financial year.");
-			return false;
-		}else{
-			if($('#whatsapp_switch').val() == "on") whatsapp_send(emp_id, customer_id, booking_date, base_url);
-				$('#btn_ticket_save').button('loading');
+
+		$('#btn_ticket_save').button('loading');
+		//New Customer save
+		if(customer_id == '0'){
+		    $.ajax({
+		        type: 'post',
+		        url: base_url+'controller/customer_master/customer_save.php',
+		        data:{ first_name : cust_first_name, middle_name : cust_middle_name, last_name : cust_last_name, gender : gender, birth_date : cust_birth_date, age : age, contact_no : contact_no, email_id : email_id, address : address,address2 : address2,city:city,  active_flag : active_flag ,service_tax_no : service_tax_no, landline_no : landline_no, alt_email_id : alt_email_id,company_name : company_name, cust_type : cust_type,state : state, branch_admin_id : branch_admin_id},
+		        success: function(result){
+					var error_arr = result.split('--');
+					if(error_arr[0]=='error'){
+						error_msg_alert(error_arr[1]);
+						$('#btn_ticket_save').button('reset');
+						$('#btn_ticket_save').prop('disabled',false);
+						return false;
+					}
+                	else{
+						saveData();
+					}
+		        }
+		    });
+		}
+		else{
+			saveData();
+		}
+
+
+		function saveData(){
+			$.post(base_url+'view/load_data/finance_date_validation.php', { check_date: payment_date }, function(data){
+			if(data !== 'valid'){
+				error_msg_alert("The Payment date does not match between selected Financial year.");
+				$('#btn_ticket_save').prop('disabled', false);
+				return false;
+			}else{
+				if($('#whatsapp_switch').val() == "on") whatsapp_send(emp_id, customer_id, booking_date, base_url);
+					$('#btn_ticket_save').button('loading');
 
 						$.ajax({
 
@@ -288,7 +308,7 @@ $('#frm_tab4').validate({
 								var msg = result.split('--');
 
 								if(msg[0]=="error"){
-
+									$('#btn_ticket_save').prop('disabled', false);
 									msg_alert(result);
 
 								}
@@ -296,7 +316,7 @@ $('#frm_tab4').validate({
 								else{
 
 									msg_alert(result);
-
+									$('#btn_ticket_save').prop('disabled', false);
 									$('#ticket_save_modal').modal('hide');
 
 									ticket_customer_list_reflect();
@@ -306,9 +326,9 @@ $('#frm_tab4').validate({
 							}
 
 						});
-			}
-		});
-
+				}
+			});
+		}
 	}
 
 });

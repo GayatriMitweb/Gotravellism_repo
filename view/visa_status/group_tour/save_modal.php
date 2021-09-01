@@ -21,9 +21,9 @@ $branch_status = $_POST['branch_status'];
                     <option value="">*Booking ID</option>
                     <?php 
                      $query = "select * from tourwise_traveler_details where 1";
-                      if($branch_status=='yes' && $role!='Admin'){
-                          $query .=" and branch_admin_id = '$branch_admin_id'";
-                        } 
+                      // if($branch_status=='yes' && $role!='Admin'){
+                      //     $query .=" and branch_admin_id = '$branch_admin_id'";
+                      //   } 
                          $query .=" order by traveler_group_id desc";
                       $sq_group = mysql_query($query);
                     while($row_group = mysql_fetch_assoc($sq_group)){

@@ -101,7 +101,7 @@ $count1=0;
 		if($role == "B2b"){
 			$query .= " and tourwise_traveler_id in (select tourwise_traveler_id from tourwise_traveler_details where emp_id ='$emp_id')";
 		}
-		include "../../../model/app_settings/branchwise_filteration.php";
+		// include "../../../model/app_settings/branchwise_filteration.php";
 		$query .=" order by payment_id desc";
 		$sq_payment = mysql_query($query);
 

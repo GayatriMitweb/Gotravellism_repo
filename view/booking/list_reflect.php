@@ -49,7 +49,7 @@ $company_name = $_POST['company_name'];
 	if($role == "B2b"){
 		$query .= " and emp_id='$emp_id' ";
 	}
-	include "../../model/app_settings/branchwise_filteration.php";
+	// include "../../model/app_settings/branchwise_filteration.php";
  
 		$query .= " order by id desc";
 		$sq_booking = mysql_query($query);

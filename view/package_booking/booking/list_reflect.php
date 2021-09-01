@@ -58,7 +58,7 @@ $company_name = $_POST['company_name'];
 			$query .= " and emp_id ='$emp_id'";
 
 		}
-		include "../../../model/app_settings/branchwise_filteration.php";
+		// include "../../../model/app_settings/branchwise_filteration.php";
 	 	$query .= " order by booking_id desc";
 
 		$count = 0;

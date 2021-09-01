@@ -207,6 +207,7 @@ $(function(){
             bank_id : { required : function(){  if($('#payment_mode').val()!="Cash"){ return true; }else{ return false; }  }  },
     },
     submitHandler:function(form){
+        $('#btn_hotel_booking').prop('disabled', true);
         var unique_timestamp = $('#unique_timestamp').val();
         var base_url = $('#base_url').val();
         var customer_id = $('#customer_id').val(); 
@@ -230,16 +231,6 @@ $(function(){
         var active_flag = 'Active';
         var branch_admin_id = $('#branch_admin_id1').val();
 
-        //New Customer save
-        if(customer_id == '0'){
-            $.ajax({
-                type: 'post',
-                url: base_url+'controller/customer_master/customer_save.php',
-                data:{ first_name : first_name, middle_name : cust_middle_name, last_name : cust_last_name, gender : gender, birth_date : birth_date, age : age, contact_no : contact_no, email_id : email_id, address : address,address2 : address2,city:city,  active_flag : active_flag ,service_tax_no : service_tax_no, landline_no : landline_no, alt_email_id : alt_email_id,company_name : company_name, cust_type : cust_type,state : state, branch_admin_id : branch_admin_id},
-                success: function(result){
-                }
-            });
-        }
 
         var emp_id = $('#emp_id').val();
         var pass_name = $('#pass_name').val();
@@ -280,7 +271,7 @@ $(function(){
         var conf_no_arr = new Array();  
       
         if(credit_amount != ''){ 
-          if(parseFloat(payment_amount) > parseFloat(credit_amount)) { error_msg_alert('Low Credit note balance'); return false; }
+          if(parseFloat(payment_amount) > parseFloat(credit_amount)) { error_msg_alert('Low Credit note balance');$('#btn_hotel_booking').prop('disabled', false); return false; }
         }
 
 
@@ -293,6 +284,7 @@ $(function(){
           if(rowCount == 1){
             if(!row.cells[0].childNodes[0].checked){
               error_msg_alert("Atleast one Hotel details is required!");
+              $('#btn_hotel_booking').prop('disabled', false);
               return false;
             }
           }
@@ -324,6 +316,7 @@ $(function(){
               
               if(msg!=""){
                 error_msg_alert(msg);
+                $('#btn_hotel_booking').prop('disabled', false);
                 return false;
               }
 
@@ -342,50 +335,73 @@ $(function(){
 
           }
         }
-				//Validation for booking and payment date in login financial year
-				var check_date1 = $('#booking_date').val();
-				$.post(base_url+'view/load_data/finance_date_validation.php', { check_date: check_date1 }, function(data){
-					if(data !== 'valid'){
-						error_msg_alert("The Booking date does not match between selected Financial year.");
-						return false;
-					}else{
-						var payment_date = $('#payment_date').val();
-						$.post(base_url+'view/load_data/finance_date_validation.php', { check_date: payment_date }, function(data){
-						if(data !== 'valid'){
-							error_msg_alert("The Payment date does not match between selected Financial year.");
-							return false;
-            }
-            else{
-              $('#btn_hotel_booking').button('loading');
-              if($('#whatsapp_switch').val() == "on" ) whatsapp_send(emp_id, customer_id, booking_date,base_url);
-              $.ajax({
+
+          //New Customer save
+          if(customer_id == '0'){
+            $.ajax({
                 type: 'post',
-                url: base_url+'controller/hotel/booking/booking_save.php',
-                data:{ emp_id : emp_id,unique_timestamp : unique_timestamp, customer_id : customer_id,pass_name : pass_name, adults : adults, childrens : childrens, infants : infants, sub_total : sub_total, service_charge : service_charge, taxation_type : taxation_type, taxation_id : taxation_id, service_tax : service_tax, service_tax_subtotal : service_tax_subtotal, discount : discount, tds : tds, total_fee : total_fee, payment_date : payment_date, payment_amount : payment_amount, payment_mode : payment_mode, bank_name : bank_name, transaction_id : transaction_id, bank_id : bank_id, city_id_arr : city_id_arr, hotel_id_arr : hotel_id_arr, check_in_arr : check_in_arr, check_out_arr : check_out_arr, no_of_nights_arr : no_of_nights_arr, rooms_arr : rooms_arr, room_type_arr : room_type_arr, category_arr : category_arr, accomodation_type_arr : accomodation_type_arr, extra_beds_arr : extra_beds_arr, meal_plan_arr : meal_plan_arr, conf_no_arr : conf_no_arr, due_date : due_date, booking_date : booking_date , branch_admin_id : branch_admin_id },
+                url: base_url+'controller/customer_master/customer_save.php',
+                data:{ first_name : first_name, middle_name : cust_middle_name, last_name : cust_last_name, gender : gender, birth_date : birth_date, age : age, contact_no : contact_no, email_id : email_id, address : address,address2 : address2,city:city,  active_flag : active_flag ,service_tax_no : service_tax_no, landline_no : landline_no, alt_email_id : alt_email_id,company_name : company_name, cust_type : cust_type,state : state, branch_admin_id : branch_admin_id},
                 success: function(result){
-                  var msg = result.split('--');
-                  if(msg[0] == 'error'){
-                    error_msg_alert(msg[1]);
-                    $('#booking_save_modal').modal('hide');
+                  var error_arr = result.split('--');
+                  if (error_arr[0] == 'error') {
+                    error_msg_alert(error_arr[1]);
                     $('#btn_hotel_booking').button('reset');
-                  }
-                  else{
-                    msg_alert(result);
-                    $('#booking_save_modal').modal('hide');
-                    $('#btn_hotel_booking').button('reset');
-                    reset_form('frm_hotel_booking_save');
-                    booking_list_reflect();
+                    $('#btn_hotel_booking').prop('disabled', false);
+                    return false;
+                  } else {
+                    saveData();
                   }
                 }
-              });
-							}
-						});
-					}
-				});
-        
+            });
+          }
 
-
-
+          function saveData(){
+            //Validation for booking and payment date in login financial year
+            var check_date1 = $('#booking_date').val();
+            $.post(base_url+'view/load_data/finance_date_validation.php', { check_date: check_date1 }, function(data){
+              if(data !== 'valid'){
+                error_msg_alert("The Booking date does not match between selected Financial year.");
+                $('#btn_hotel_booking').prop('disabled', false);
+                return false;
+              }else{
+                var payment_date = $('#payment_date').val();
+                $.post(base_url+'view/load_data/finance_date_validation.php', { check_date: payment_date }, function(data){
+                if(data !== 'valid'){
+                  error_msg_alert("The Payment date does not match between selected Financial year.");
+                  $('#btn_hotel_booking').prop('disabled', false);
+                  return false;
+                }
+                else{
+                  $('#btn_hotel_booking').button('loading');
+                  if($('#whatsapp_switch').val() == "on" ) whatsapp_send(emp_id, customer_id, booking_date,base_url);
+                  $.ajax({
+                    type: 'post',
+                    url: base_url+'controller/hotel/booking/booking_save.php',
+                    data:{ emp_id : emp_id,unique_timestamp : unique_timestamp, customer_id : customer_id,pass_name : pass_name, adults : adults, childrens : childrens, infants : infants, sub_total : sub_total, service_charge : service_charge, taxation_type : taxation_type, taxation_id : taxation_id, service_tax : service_tax, service_tax_subtotal : service_tax_subtotal, discount : discount, tds : tds, total_fee : total_fee, payment_date : payment_date, payment_amount : payment_amount, payment_mode : payment_mode, bank_name : bank_name, transaction_id : transaction_id, bank_id : bank_id, city_id_arr : city_id_arr, hotel_id_arr : hotel_id_arr, check_in_arr : check_in_arr, check_out_arr : check_out_arr, no_of_nights_arr : no_of_nights_arr, rooms_arr : rooms_arr, room_type_arr : room_type_arr, category_arr : category_arr, accomodation_type_arr : accomodation_type_arr, extra_beds_arr : extra_beds_arr, meal_plan_arr : meal_plan_arr, conf_no_arr : conf_no_arr, due_date : due_date, booking_date : booking_date , branch_admin_id : branch_admin_id },
+                    success: function(result){
+                      var msg = result.split('--');
+                      if(msg[0] == 'error'){
+                        error_msg_alert(msg[1]);
+                        $('#booking_save_modal').modal('hide');
+                        $('#btn_hotel_booking').prop('disabled', false);
+                        $('#btn_hotel_booking').button('reset');
+                      }
+                      else{
+                        msg_alert(result);
+                        $('#booking_save_modal').modal('hide');
+                        $('#btn_hotel_booking').prop('disabled', false);
+                        $('#btn_hotel_booking').button('reset');
+                        reset_form('frm_hotel_booking_save');
+                        booking_list_reflect();
+                      }
+                    }
+                  });
+                  }
+                });
+              }
+            });
+          }
     }
   });
 });

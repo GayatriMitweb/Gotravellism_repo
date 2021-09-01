@@ -39,7 +39,7 @@ if($booker_id!=""){
 if($branch_id!=""){
 	$query .= " and emp_id in(select emp_id from emp_master where branch_id = '$branch_id')";
 }
-include "../../../model/app_settings/branchwise_filteration.php";
+// include "../../../model/app_settings/branchwise_filteration.php";
 $query .= " order by id desc";
 $count = 0;
 $total_balance=0;
