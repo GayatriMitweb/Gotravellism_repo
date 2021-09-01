@@ -242,17 +242,17 @@ $count = 0;
     if($company_name != ""){
         $query .= " and tourwise_traveler_id in (select id from tourwise_traveler_details where customer_id in ( select customer_id from customer_master where company_name='$company_name' ))";
     }
-    if($branch_status=='yes'){
-      if($role=='Branch Admin' || $role=='Accountant' || $role_id>'7'){
-        $query .= " and branch_admin_id = '$branch_admin_id'";
-      }
-      elseif($role!='Admin' && $role!='Branch Admin' && $role_id!='7' && $role_id<'7'){
-        $query .= " and emp_id='$emp_id' and branch_admin_id = '$branch_admin_id'";
-      }
-    }
-    elseif($role!='Admin' && $role!='Branch Admin' && $role_id!='7' && $role_id<'7'){
-      $query .= " and emp_id='$emp_id'";
-    }
+    // if($branch_status=='yes'){
+    //   if($role=='Branch Admin' || $role=='Accountant' || $role_id>'7'){
+    //     $query .= " and branch_admin_id = '$branch_admin_id'";
+    //   }
+    //   elseif($role!='Admin' && $role!='Branch Admin' && $role_id!='7' && $role_id<'7'){
+    //     $query .= " and emp_id='$emp_id' and branch_admin_id = '$branch_admin_id'";
+    //   }
+    // }
+    // elseif($role!='Admin' && $role!='Branch Admin' && $role_id!='7' && $role_id<'7'){
+    //   $query .= " and emp_id='$emp_id'";
+    // }
 $sq_payment = mysql_query($query);
 
 $row_count = 14;

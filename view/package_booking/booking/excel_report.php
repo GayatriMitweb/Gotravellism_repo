@@ -300,17 +300,17 @@ $query = "select * from package_tour_booking_master where financial_year_id='$fi
       $query .= " and customer_id in (select customer_id from customer_master where company_name = '$company_name')";
 
     }
-    if($branch_status=='yes'){
-      if($role=='Branch Admin' || $role=='Accountant' || $role_id>'7'){
-        $query .= " and branch_admin_id = '$branch_admin_id'";
-      }
-      elseif($role!='Admin' && $role!='Branch Admin' && $role_id!='7' && $role_id<'7'){
-        $query .= " and emp_id='$emp_id' and branch_admin_id = '$branch_admin_id'";
-      }
-    }
-    elseif($role!='Admin' && $role!='Branch Admin' && $role_id!='7' && $role_id<'7'){
-      $query .= " and emp_id='$emp_id'";
-    }
+    // if($branch_status=='yes'){
+    //   if($role=='Branch Admin' || $role=='Accountant' || $role_id>'7'){
+    //     $query .= " and branch_admin_id = '$branch_admin_id'";
+    //   }
+    //   elseif($role!='Admin' && $role!='Branch Admin' && $role_id!='7' && $role_id<'7'){
+    //     $query .= " and emp_id='$emp_id' and branch_admin_id = '$branch_admin_id'";
+    //   }
+    // }
+    // elseif($role!='Admin' && $role!='Branch Admin' && $role_id!='7' && $role_id<'7'){
+    //   $query .= " and emp_id='$emp_id'";
+    // }
    
     $query .= ' order by booking_id desc';
 
