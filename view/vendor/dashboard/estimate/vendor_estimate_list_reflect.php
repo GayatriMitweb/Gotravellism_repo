@@ -86,27 +86,19 @@ while($row_estimate = mysql_fetch_assoc($sq_estimate)){
 	array_push($array_s,$temp_arr); 					
 }
 $footer_data = array("footer_data" => array(
-	'total_footers' => 5,
+	'total_footers' => 3,
 	
 	'foot0' => "Total Amount : ".number_format($total_estimate_amt, 2),
-	'col0' => 4,
+	'col0' => 7,
 	'class0' =>"text-right info",
 
 	'foot1' => "Total Cancel : ".number_format($total_cancel_amt, 2),
-	'col1' => 2,
+	'col1' => 1,
 	'class1' =>"text-left danger",
 
 	'foot2' => "Total Purchase : ".number_format($total_purchase_amt, 2),
 	'col2' => 2,
 	'class2' =>"info",
-
-	'foot3' => "Total Paid : ".number_format($total_paid_amt, 2),
-	'col3' => 1,
-	'class3' =>"success",
-
-	'foot4' => "Balance : ".number_format(($total_estimate_amt - $total_cancel_amt - $total_paid_amt), 2),
-	'col4' => 2,
-	'class4' =>"warning"
 	)
 );
 array_push($array_s, $footer_data);

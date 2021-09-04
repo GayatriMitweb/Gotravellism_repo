@@ -48,14 +48,14 @@
         </select>
     </td>
 
-    <td><input type="text" id="m_birthdate1" name="m_birthdate1" title="Birthdate" onchange="calculate_age_member(this.id); payment_details_reflected_data('tbl_member_dynamic_row');" value="<?= date('d-m-Y',  strtotime(' -1 day'))?>" placeholder="*Birth Date" />
+    <!-- <td><input type="text" id="m_birthdate1" name="m_birthdate1" title="Birthdate" onchange="calculate_age_member(this.id); payment_details_reflected_data('tbl_member_dynamic_row');" value="<?= date('d-m-Y',  strtotime(' -1 day'))?>" placeholder="*Birth Date" />
     </td>
 
     <td style="width: 100px;"><input type="text" id="txt_m_age1" name="txt_m_age1" title="Age(Y:M:D)" placeholder="*Age" onchange="payment_details_reflected_data('tbl_member_dynamic_row')" />
-    </td>
+    </td> -->
 
-    <td><select id="txt_m_adolescence1" name="txt_m_adolescence1" title="Adolescence" style="width:60px" disabled>
-            <option value=""></option>
+    <td><select id="txt_m_adolescence1" name="txt_m_adolescence1" title="Adolescence" style="width:60px">
+            <option value="">Adolescence</option>
             <option value="Adult">A</option>
             <option value="Child With Bed">CB</option>
             <option value="Child Without Bed">CWB</option>
@@ -135,14 +135,14 @@ function cust_csv_save()
                 row.cells[4].childNodes[0].value = pass_arr[i]['m_middle_name'];
                 row.cells[5].childNodes[0].value = pass_arr[i]['m_last_name'];
                 row.cells[6].childNodes[0].value = pass_arr[i]['m_gender'];
-                row.cells[7].childNodes[0].value = pass_arr[i]['m_birth_date1'];
-                row.cells[8].childNodes[0].value = pass_arr[i]['m_age'];
-                row.cells[9].childNodes[0].value = pass_arr[i]['m_adolescence'];
-                row.cells[10].childNodes[0].value = pass_arr[i]['m_passport_no'];
-                row.cells[11].childNodes[0].value = pass_arr[i]['m_passport_issue_date1'];
-                row.cells[12].childNodes[0].value = pass_arr[i]['m_passport_expiry_date1'];
+                // row.cells[7].childNodes[0].value = pass_arr[i]['m_birth_date1'];
+                // row.cells[8].childNodes[0].value = pass_arr[i]['m_age'];
+                row.cells[7].childNodes[0].value = pass_arr[i]['m_adolescence'];
+                row.cells[8].childNodes[0].value = pass_arr[i]['m_passport_no'];
+                row.cells[9].childNodes[0].value = pass_arr[i]['m_passport_issue_date1'];
+                row.cells[10].childNodes[0].value = pass_arr[i]['m_passport_expiry_date1'];
 
-                calculate_age_member(row.cells[7].childNodes[0].id);
+                // calculate_age_member(row.cells[7].childNodes[0].id);
                 tour_type_reflect('cmb_tour_name');
                 if(pass_arr[i]['m_passport_no'] != 'Na')
                 {

@@ -84,9 +84,9 @@ function copy_details(){
 					row.cells[3].childNodes[0].value = first_name;
 					row.cells[4].childNodes[0].value = middle_name;
 					row.cells[5].childNodes[0].value = last_name;
-					row.cells[7].childNodes[0].value = birthdate;
-  					adolescence_reflect('m_birthdate1');
-					calculate_age_member('m_birthdate1');
+					// row.cells[7].childNodes[0].value = birthdate;
+  					// adolescence_reflect('m_birthdate1');
+					// calculate_age_member('m_birthdate1');
 					payment_details_reflected_data('tbl_member_dynamic_row');
 				}
 			}
@@ -108,9 +108,9 @@ function copy_details(){
 						row.cells[3].childNodes[0].value = result.first_name;
 						row.cells[4].childNodes[0].value = result.middle_name;
 						row.cells[5].childNodes[0].value = result.last_name;
-						row.cells[7].childNodes[0].value = result.birth_date;
-  					adolescence_reflect('m_birthdate1');
-            		calculate_age_member('m_birthdate1');
+						// row.cells[7].childNodes[0].value = result.birth_date;
+  					// adolescence_reflect('m_birthdate1');
+            		// calculate_age_member('m_birthdate1');
 					payment_details_reflected_data('tbl_member_dynamic_row');
 					}
 				}
@@ -129,8 +129,8 @@ function copy_details(){
 				row.cells[3].childNodes[0].value = '';
 				row.cells[4].childNodes[0].value = '';
 				row.cells[5].childNodes[0].value = '';
-				row.cells[7].childNodes[0].value = '';
-				row.cells[8].childNodes[0].value = '';
+				// row.cells[7].childNodes[0].value = '';
+				// row.cells[8].childNodes[0].value = '';
 			}
 		}
 	}

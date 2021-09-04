@@ -54,9 +54,9 @@ while($row_traveler_grop_details = mysql_fetch_assoc($sq_traveler_grop_details))
             <option value="Female"> F </option>
         </select>
     </td>
-    <td><input maxlength="20" type="text" id="<?php echo 'm_birthdate'.$count_m.'m' ?>" name="<?php echo 'm_birthdate'.$count_m.'m' ?>" value="<?php if($row_traveler_grop_details['birth_date']!="") { echo date("d-m-Y", strtotime($row_traveler_grop_details['birth_date'])); } ?>" <?= $disabled;?> title="Birth Date"  onchange="calculate_age_member(this.id); payment_details_reflected_data('tbl_member_dynamic_row');" placeholder="Birth Date" required /></td>
-    <td style="width: 100px;"><input type="text" id="<?php echo 'txt_m_age'.$count_m.'m' ?>" name="<?php echo 'txt_m_age'.$count_m.'m' ?>" <?= $disabled;?>  value="<?php echo $row_traveler_grop_details['age'] ?>" title="Age(Y:M:D)" placeholder="Age" onchange="payment_details_reflected_data('tbl_member_dynamic_row')"  onkeyup="adolescence_reflect(this.id)" /></td>
-    <td><select id="<?php echo 'txt_m_adolescence'.$count_m.'m' ?>" title="Adolescence" name="<?php echo 'txt_m_adolescence'.$count_m.'m' ?>" disabled>
+    <!-- <td><input maxlength="20" type="text" id="<?php echo 'm_birthdate'.$count_m.'m' ?>" name="<?php echo 'm_birthdate'.$count_m.'m' ?>" value="<?php if($row_traveler_grop_details['birth_date']!="") { echo date("d-m-Y", strtotime($row_traveler_grop_details['birth_date'])); } ?>" <?= $disabled;?> title="Birth Date"  onchange="calculate_age_member(this.id); payment_details_reflected_data('tbl_member_dynamic_row');" placeholder="Birth Date" required /></td> -->
+    <!-- <td style="width: 100px;"><input type="text" id="<?php echo 'txt_m_age'.$count_m.'m' ?>" name="<?php echo 'txt_m_age'.$count_m.'m' ?>" <?= $disabled;?>  value="<?php echo $row_traveler_grop_details['age'] ?>" title="Age(Y:M:D)" placeholder="Age" onchange="payment_details_reflected_data('tbl_member_dynamic_row')"  onkeyup="adolescence_reflect(this.id)" /></td> -->
+    <td><select id="<?php echo 'txt_m_adolescence'.$count_m.'m' ?>" title="Adolescence" name="<?php echo 'txt_m_adolescence'.$count_m.'m' ?>">
             <?php 
             if($row_traveler_grop_details['adolescence']=="Adult"){ $adlc = "A"; }
             if($row_traveler_grop_details['adolescence']=="Children"){ $adlc = "C"; }
