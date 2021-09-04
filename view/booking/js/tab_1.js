@@ -34,8 +34,8 @@ $('#frm_tab_1').validate({
             cmb_tour_name: { required:true }, 
             cmb_tour_group: { required:true },
     },
-    submitHandler:function(form){
-
+    submitHandler:function(form, e){
+        e.preventDefault();
          var count = 0;
          var err_msg = "";
          var passport_no_arr = new Array();
@@ -56,14 +56,14 @@ $('#frm_tab_1').validate({
             if(row.cells[0].childNodes[0].checked)
             {  
               var first_name = row.cells[3].childNodes[0].value;
-              var birth_date1 = row.cells[7].childNodes[0];
-              var age = row.cells[8].childNodes[0].value;
-              var adolescence = row.cells[9].childNodes[0].value;
-              var passport_no = row.cells[10].childNodes[0].value;
-              var passport_issue_date = row.cells[11].childNodes[0].value;              
-              var passport_expiry_date = row.cells[12].childNodes[0].value;
-              if(row.cells[13]){
-                (row.cells[13].childNodes[0].value=='')?entry_id_array.push(row.cells[13].childNodes[0].value):'';
+              // var birth_date1 = row.cells[7].childNodes[0];
+              // var age = row.cells[8].childNodes[0].value;
+              var adolescence = row.cells[7].childNodes[0].value;
+              var passport_no = row.cells[8].childNodes[0].value;
+              var passport_issue_date = row.cells[9].childNodes[0].value;              
+              var passport_expiry_date = row.cells[10].childNodes[0].value;
+              if(row.cells[11]){
+                (row.cells[11].childNodes[0].value=='')?entry_id_array.push(row.cells[11].childNodes[0].value):'';
               }
               passport_issue_date = php_to_js_date_converter(passport_issue_date);
               passport_expiry_date = php_to_js_date_converter(passport_expiry_date);
@@ -77,7 +77,7 @@ $('#frm_tab_1').validate({
               else if(!first_name.replace(/\s/g, '').length){ err_msg += "Enter valid first name of traveller in row"+current_row+"<br>";} 
              
               if(adolescence == ""){ err_msg += "Enter Proper birth-date in row"+current_row+"<br>"; }
-              if(age == ""){ err_msg += "Enter Age in row"+current_row+"<br>"; }
+              // if(age == ""){ err_msg += "Enter Age in row"+current_row+"<br>"; }
               count++;
             } 
           }

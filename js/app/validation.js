@@ -382,34 +382,34 @@ function foo (tableID, quot_table_id) {
 		row.cells[5].childNodes[0].setAttribute('id', 'txt_m_last_name' + foo.counter);
 		row.cells[6].childNodes[0].setAttribute('id', 'cmb_m_gender' + foo.counter);
 
-		for (var i = row.cells[7].childNodes[0].attributes.length; i-- > 0; )
-			row.cells[7].childNodes[0].removeAttributeNode(row.cells[7].childNodes[0].attributes[i]);
-		row.cells[7].childNodes[0].setAttribute('id', 'm_birthdate' + foo.counter);
-		row.cells[7].childNodes[0].setAttribute(
-			'onchange',
-			'calculate_age_member(id); payment_details_reflected_data("tbl_member_dynamic_row")'
-		);
+		// for (var i = row.cells[7].childNodes[0].attributes.length; i-- > 0; )
+		// 	row.cells[7].childNodes[0].removeAttributeNode(row.cells[7].childNodes[0].attributes[i]);
+		// row.cells[7].childNodes[0].setAttribute('id', 'm_birthdate' + foo.counter);
+		// row.cells[7].childNodes[0].setAttribute(
+		// 	'onchange',
+		// 	'calculate_age_member(id); payment_details_reflected_data("tbl_member_dynamic_row")'
+		// );
 
-		var yesterday = new Date(new Date().valueOf() - 1000 * 60 * 60 * 24);
-		var d = yesterday.getDate();
-		var m = yesterday.getMonth() + 1; //Month from 0 to 11
-		var y = yesterday.getFullYear();
-		var yesterdayStr = '' + (d <= 9 ? '0' + d : d) + '-' + (m <= 9 ? '0' + m : m) + '-' + y;
-		row.cells[7].childNodes[0].value = yesterdayStr;
-		row.cells[7].childNodes[0].placeholder = 'Birth Date';
+		// var yesterday = new Date(new Date().valueOf() - 1000 * 60 * 60 * 24);
+		// var d = yesterday.getDate();
+		// var m = yesterday.getMonth() + 1; //Month from 0 to 11
+		// var y = yesterday.getFullYear();
+		// var yesterdayStr = '' + (d <= 9 ? '0' + d : d) + '-' + (m <= 9 ? '0' + m : m) + '-' + y;
+		// row.cells[7].childNodes[0].value = yesterdayStr;
+		// row.cells[7].childNodes[0].placeholder = 'Birth Date';
 
-		dynamic_birthdate(row.cells[7].childNodes[0].id);
+		// dynamic_birthdate(row.cells[7].childNodes[0].id);
 
-		row.cells[8].childNodes[0].setAttribute('id', 'txt_m_age' + foo.counter);
-		row.cells[9].childNodes[0].setAttribute('id', 'txt_m_adolescence' + foo.counter);
-		row.cells[10].childNodes[0].setAttribute('id', 'txt_m_passport_no' + foo.counter);
-		row.cells[11].childNodes[0].setAttribute('id', 'txt_m_passport_issue_date' + foo.counter);
-		row.cells[12].childNodes[0].setAttribute('id', 'txt_m_passport_expiry_date' + foo.counter);
-		if (row.cells[13]) {
-			$(row.cells[13]).addClass('hidden');
+		// row.cells[8].childNodes[0].setAttribute('id', 'txt_m_age' + foo.counter);
+		row.cells[7].childNodes[0].setAttribute('id', 'txt_m_adolescence' + foo.counter);
+		row.cells[8].childNodes[0].setAttribute('id', 'txt_m_passport_no' + foo.counter);
+		row.cells[9].childNodes[0].setAttribute('id', 'txt_m_passport_issue_date' + foo.counter);
+		row.cells[110].childNodes[0].setAttribute('id', 'txt_m_passport_expiry_date' + foo.counter);
+		if (row.cells[11]) {
+			$(row.cells[11]).addClass('hidden');
 		}
-		$(row.cells[7]).addClass('hidden');
-			$(row.cells[8]).addClass('hidden');
+		// $(row.cells[7]).addClass('hidden');
+		// 	$(row.cells[8]).addClass('hidden');
 	}
 
 	if (tableID == 'tbl_train_travel_details_dynamic_row') {
