@@ -30,8 +30,8 @@ function update_booking_details()
   var m_middle_name = new Array();
   var m_last_name = new Array();
   var m_gender = new Array();
-  // var m_birth_date = new Array();
-  // var m_age = new Array();
+  var m_birth_date = new Array();
+  var m_age = new Array();
   var m_adolescence = new Array(); 
   var m_passport_no = new Array();
   var m_passport_issue_date = new Array();

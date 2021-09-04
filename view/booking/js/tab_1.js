@@ -76,7 +76,7 @@ $('#frm_tab_1').validate({
               else if(!first_name.match(/^[A-z ]+$/)){ err_msg += "Enter valid first name of traveller in row"+current_row+"<br>";} 
               else if(!first_name.replace(/\s/g, '').length){ err_msg += "Enter valid first name of traveller in row"+current_row+"<br>";} 
              
-              if(adolescence == ""){ err_msg += "Enter Proper birth-date in row"+current_row+"<br>"; }
+              if(adolescence == ""){ err_msg += "Enter Proper adolescence in row"+current_row+"<br>"; }
               // if(age == ""){ err_msg += "Enter Age in row"+current_row+"<br>"; }
               count++;
             } 
