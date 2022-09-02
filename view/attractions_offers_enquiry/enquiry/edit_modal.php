@@ -45,16 +45,19 @@ $enq_details = mysql_fetch_assoc(mysql_query("Select * from enquiry_master where
                         <input type="text" class="form-control" id="txt_name_u" name="txt_name_u" onchange="fname_validate(this.id)" placeholder="*Customer Name" title="Customer Name" value="<?= $enq_details[name] ?>">
                     </div>
                     <div class="col-md-3 col-sm-6 mg_bt_10">
+                        <input type="text" class="form-control" id="type_customer1" name="type_customer1" placeholder="Customer-Persona" title="Customer-Persona" value="<?= $enq_details[type_customer] ?>" readonly>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mg_bt_10">
                         <input type="text" class="form-control" id="txt_mobile_no_u" onchange="mobile_validate(this.id);" name="txt_mobile_no_u" placeholder="*Mobile No" title="Mobile No" value="<?= $enq_details[mobile_no] ?>"> 
                     </div>
                     <div class="col-md-3 col-sm-6 mg_bt_10">
                         <input type="text" class="form-control" id="txt_landline_no_u" onchange="mobile_validate(this.id);" name="txt_landline_no_u" placeholder="WhatsApp No with country code" title="WhatsApp No with country code" value="<?= $enq_details[landline_no] ?>"> 
-                    </div>        
-                    <div class="col-md-3 col-sm-6 mg_bt_10">
-                        <input type="text" class="form-control" id="txt_email_id_u" name="txt_email_id_u" placeholder="Email ID" title="Email ID" value="<?= $enq_details[email_id] ?>">
-                    </div>   
+                    </div>           
                 </div>
                 <div class="row">
+                    <div class="col-md-3 col-sm-6 mg_bt_10">
+                        <input type="text" class="form-control" id="txt_email_id_u" name="txt_email_id_u" placeholder="Email ID" title="Email ID" value="<?= $enq_details[email_id] ?>">
+                    </div>
                     <div class="col-md-3 col-sm-6 mg_bt_10">
                         <input type="text" class="form-control" id="location_u" name="location_u" placeholder="Location" title="Location" value="<?= $enq_details[location] ?>">
                     </div>
@@ -218,6 +221,7 @@ $(function(){
       event.preventDefault();
        var base_url = $('#base_url').val();   
        var name = $("#txt_name_u").val(); 
+       var type_customer = $('#type_customer1').val();
        var enquiry_id = $("#enquiry_id").val(); 
        var enquiry = $('#enquiry_u').val(); 
        var mobile_no = $("#txt_mobile_no_u").val(); 
@@ -250,7 +254,7 @@ $(function(){
        $('#btn_enq_edit').button('loading');
        $.post( 
                    base_url+"controller/attractions_offers_enquiry/enquiry_master_update_c.php",
-                   { enquiry_id : enquiry_id, mobile_no : mobile_no, email_id : email_id,location :location, landline_no : landline_no ,enquiry : enquiry, enquiry_date : enquiry_date , followup_date : followup_date, reference : reference,enquiry_content : enquiry_content, enquiry_specification : enquiry_specification,assigned_emp_id : assigned_emp_id, name : name},
+                   { enquiry_id : enquiry_id, mobile_no : mobile_no, email_id : email_id,location :location, landline_no : landline_no ,enquiry : enquiry, enquiry_date : enquiry_date , followup_date : followup_date, reference : reference,enquiry_content : enquiry_content, enquiry_specification : enquiry_specification,assigned_emp_id : assigned_emp_id, name : name, type_customer : type_customer},
                    function(data){
                           $('#enquiry_edit_modal').modal('hide');
                            $('#btn_enq_edit').button('reset');

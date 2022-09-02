@@ -249,11 +249,12 @@ $objPHPExcel->setActiveSheetIndex(0)
         ->setCellValue('P'.$row_count, "Alt Email") 
         ->setCellValue('Q'.$row_count, "Tax No")
         ->setCellValue('R'.$row_count, "PAN No/TAN No")
-        ->setCellValue('S'.$row_count, "Status");
+        ->setCellValue('S'.$row_count, "Customer_Persona")
+        ->setCellValue('T'.$row_count, "Status");
 
-$objPHPExcel->getActiveSheet()->getStyle('B'.$row_count.':S'.$row_count)->applyFromArray($header_style_Array);
+$objPHPExcel->getActiveSheet()->getStyle('B'.$row_count.':T'.$row_count)->applyFromArray($header_style_Array);
 
-$objPHPExcel->getActiveSheet()->getStyle('B'.$row_count.':S'.$row_count)->applyFromArray($borderArray);    
+$objPHPExcel->getActiveSheet()->getStyle('B'.$row_count.':T'.$row_count)->applyFromArray($borderArray);    
 
 $row_count++;
 
@@ -292,11 +293,12 @@ while($row_customer = mysql_fetch_assoc($sq_customer)){
         ->setCellValue('P'.$row_count, $row_customer['alt_email'])
         ->setCellValue('Q'.$row_count, $row_customer['service_tax_no'])
         ->setCellValue('R'.$row_count, $row_customer['pan_no'])
-        ->setCellValue('S'.$row_count, $row_customer['active_flag']);
+        ->setCellValue('S'.$row_count, $row_customer['type_customer'])
+        ->setCellValue('T'.$row_count, $row_customer['active_flag']);
 
   
-  $objPHPExcel->getActiveSheet()->getStyle('B'.$row_count.':S'.$row_count)->applyFromArray($content_style_Array);
-  $objPHPExcel->getActiveSheet()->getStyle('B'.$row_count.':S'.$row_count)->applyFromArray($borderArray);    
+  $objPHPExcel->getActiveSheet()->getStyle('B'.$row_count.':T'.$row_count)->applyFromArray($content_style_Array);
+  $objPHPExcel->getActiveSheet()->getStyle('B'.$row_count.':T'.$row_count)->applyFromArray($borderArray);    
 
 
 

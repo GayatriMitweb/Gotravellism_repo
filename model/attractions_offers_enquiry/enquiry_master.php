@@ -8,6 +8,7 @@ function enquiry_master_save(){
   $enquiry_type = $_POST['enquiry_type'];
   $enquiry = $_POST['enquiry'];
   $name = $_POST["name"]; 
+  $type_customer = $_POST['type_customer'];
   $mobile_no = $_POST["mobile_no"]; 
   $landline_no = $_POST["landline_no"];
   $email_id = $_POST["email_id"];
@@ -59,7 +60,7 @@ function enquiry_master_save(){
 
     $name = addslashes($name);
     $enquiry_specification = addslashes($enquiry_specification);
-    $sq_enquiry = mysql_query("insert into enquiry_master (enquiry_id, login_id,branch_admin_id,financial_year_id, enquiry_type,enquiry, name, mobile_no, landline_no, email_id,location, assigned_emp_id, enquiry_specification, enquiry_date, followup_date, reference_id, enquiry_content ) values ('$enquiry_id', '$login_id', '$branch_admin_id','$financial_year_id', '$enquiry_type','$enquiry', '$name', '$mobile_no', '$landline_no', '$email_id','$location', '$assigned_emp_id', '$enquiry_specification', '$enquiry_date', '$followup_date', '$reference_id', '$enquiry_content')");
+    $sq_enquiry = mysql_query("insert into enquiry_master (enquiry_id, login_id,branch_admin_id,financial_year_id, enquiry_type,enquiry, name, type_customer, mobile_no, landline_no, email_id,location, assigned_emp_id, enquiry_specification, enquiry_date, followup_date, reference_id, enquiry_content ) values ('$enquiry_id', '$login_id', '$branch_admin_id','$financial_year_id', '$enquiry_type','$enquiry', '$name', '$type_customer', '$mobile_no', '$landline_no', '$email_id','$location', '$assigned_emp_id', '$enquiry_specification', '$enquiry_date', '$followup_date', '$reference_id', '$enquiry_content')");
 
     $sq_max = mysql_fetch_assoc(mysql_query("select max(entry_id) as max from enquiry_master_entries"));
     $entry_id = $sq_max['max'] + 1;
@@ -235,13 +236,14 @@ function enquiry_master_update()
   $enquiry_specification = $_POST['enquiry_specification'];
   $assigned_emp_id = $_POST['assigned_emp_id'];
   $name = $_POST['name'];
+  $type_customer = $_POST['type_customer'];
   
   $enquiry_date = date('Y-m-d', strtotime($enquiry_date));
   $followup_date = date('Y-m-d H:i', strtotime($followup_date));
 
   $name = addslashes($name);
   $enquiry_specification = addslashes($enquiry_specification);
-  $sq_enquiry = mysql_query("update enquiry_master set name='$name', mobile_no='$mobile_no',landline_no = '$landline_no', email_id='$email_id',location='$location', enquiry = '$enquiry', enquiry_date='$enquiry_date', followup_date='$followup_date', reference_id='$reference_id', enquiry_content='$enquiry_content', enquiry_specification='$enquiry_specification', assigned_emp_id ='$assigned_emp_id' where enquiry_id='$enquiry_id'");
+  $sq_enquiry = mysql_query("update enquiry_master set name='$name', type_customer='$type_customer', mobile_no='$mobile_no',landline_no = '$landline_no', email_id='$email_id',location='$location', enquiry = '$enquiry', enquiry_date='$enquiry_date', followup_date='$followup_date', reference_id='$reference_id', enquiry_content='$enquiry_content', enquiry_specification='$enquiry_specification', assigned_emp_id ='$assigned_emp_id' where enquiry_id='$enquiry_id'");
 
   if(!$sq_enquiry){
     echo "error--Enquiry Information Not Updated.";
@@ -469,7 +471,7 @@ public function enquiry_csv_save()
                   if(preg_match('/^[0-9]*$/', $assigned_emp_id) && !empty($enquiry)  && !empty($assigned_emp_id) && !empty($reference_id) && !empty($name) && !empty($data[4]) && !empty($followup_date) && !empty($data[5])){
 
                       $validCount++;
-                      $query = "insert into enquiry_master (enquiry_id, login_id, branch_admin_id,financial_year_id, enquiry_type, enquiry, name, mobile_no,landline_no, email_id,location, assigned_emp_id, enquiry_specification, enquiry_date, followup_date, reference_id, enquiry_content) values ('$enquiry_id', '$login_id', '$branch_admin_id','$financial_year_id', '$enquiry_type', '$enquiry', '$name', '$mobile_no', '$landline_no', '$email_id','$location', '$assigned_emp_id', '$enquiry_specification', '$enquiry_date1', '$followup_date1', '$reference_id', '$enquiry_content')";
+                      $query = "insert into enquiry_master (enquiry_id, login_id, branch_admin_id,financial_year_id, enquiry_type, enquiry, name, type_customer, mobile_no,landline_no, email_id,location, assigned_emp_id, enquiry_specification, enquiry_date, followup_date, reference_id, enquiry_content) values ('$enquiry_id', '$login_id', '$branch_admin_id','$financial_year_id', '$enquiry_type', '$enquiry', '$name', '$type_customer','$mobile_no', '$landline_no', '$email_id','$location', '$assigned_emp_id', '$enquiry_specification', '$enquiry_date1', '$followup_date1', '$reference_id', '$enquiry_content')";
                       $sq_enquiry = mysql_query($query);
 
                       $sq_max = mysql_fetch_assoc(mysql_query("select max(entry_id) as max from enquiry_master_entries"));

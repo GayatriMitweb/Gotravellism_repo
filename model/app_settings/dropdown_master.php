@@ -469,6 +469,7 @@ function get_customer_hint(){
         $to_be_push = array(
           "value" => $row_cust['company_name'],
           "label" => $row_cust['company_name'],
+          "type_customer" => $row_cust['type_customer'],
           "contact_no" => $contact_no,
           "email_id" => $email_id
         );
@@ -477,6 +478,7 @@ function get_customer_hint(){
         $to_be_push = array(
           "value" =>$row_cust['first_name'].' '.$row_cust['last_name'],
           "label" =>$row_cust['first_name'].' '.$row_cust['last_name'],
+          "type_customer" => $row_cust['type_customer'],
           "contact_no" => $contact_no,
           "email_id" => $email_id
         );
@@ -495,6 +497,7 @@ else{
         $to_be_push = array(
           "value" => $row_cust['company_name'],
           "label" => $row_cust['company_name'],
+          "type_customer" => $row_cust['type_customer'],
           "contact_no" => $contact_no,
           "email_id" => $email_id
         );
@@ -503,6 +506,7 @@ else{
         $to_be_push = array(
           "value" =>$row_cust['first_name'].' '.$row_cust['last_name'],
           "label" =>$row_cust['first_name'].' '.$row_cust['last_name'],
+          "type_customer" => $row_cust['type_customer'],
           "contact_no" => $contact_no,
           "email_id" => $email_id
         );

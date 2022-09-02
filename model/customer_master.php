@@ -30,6 +30,7 @@ public function customer_master_save()
   $id_no = $_POST['id_no'];
   $id_type = $_POST['id_type'];
   $mem_no = $_POST['mem_no'];
+  $type_customer = $_POST['type_customer'];
 
 	$username = $contact_no;
   $password = $email_id;
@@ -58,7 +59,7 @@ public function customer_master_save()
 	$sq_max = mysql_fetch_assoc(mysql_query("select max(customer_id) as max from customer_master"));
 	$customer_id = $sq_max['max'] + 1;
 
-	$sq_visa = mysql_query("insert into customer_master (customer_id,type,first_name, middle_name, last_name, gender, birth_date, age, contact_no,landline_no, email_id,alt_email,company_name, address, address2, city, active_flag, created_at,service_tax_no,state_id,pan_no, branch_admin_id,source, id_photo, pro_photo, id_no, id_type, mem_no) values ('$customer_id','$cust_type', '$first_name', '$middle_name', '$last_name', '$gender', '$birth_date', '$age', '$contact_no','$landline_no', '$email_id','$alt_email_id','$company_name', '$address','$address2','$city', '$active_flag', '$created_at', '$service_tax_no','$state','$cust_pan','$branch_admin_id','$cust_source','$id_photo','$pro_photo','$id_no', '$id_type', '$mem_no')");
+	$sq_visa = mysql_query("insert into customer_master (customer_id,type,first_name, middle_name, last_name, gender, birth_date, age, contact_no,landline_no, email_id,alt_email,company_name, address, address2, city, active_flag, created_at,service_tax_no,state_id,pan_no, branch_admin_id,source, id_photo, pro_photo, id_no, id_type, mem_no,type_customer) values ('$customer_id','$cust_type', '$first_name', '$middle_name', '$last_name', '$gender', '$birth_date', '$age', '$contact_no','$landline_no', '$email_id','$alt_email_id','$company_name', '$address','$address2','$city', '$active_flag', '$created_at', '$service_tax_no','$state','$cust_pan','$branch_admin_id','$cust_source','$id_photo','$pro_photo','$id_no', '$id_type', '$mem_no', '$type_customer')");
 
   $sq_max = mysql_fetch_assoc(mysql_query("select max(ledger_id) as max from ledger_master"));
   $ledger_id = $sq_max['max'] + 1;
@@ -112,6 +113,7 @@ public function customer_master_update(){
   $id_no = $_POST['id_no'];
   $id_type = $_POST['id_type'];
   $mem_no = $_POST['mem_no'];
+  $type_customer = $_POST['type_customer'];
 
 	$birth_date = date('Y-m-d', strtotime($birth_date));
   $created_at = date("Y-m-d");
@@ -124,7 +126,7 @@ public function customer_master_update(){
     exit;
   }
 
-	$sq_visa = mysql_query("update customer_master set type = '$cust_type',first_name='$first_name', middle_name='$middle_name', last_name='$last_name', gender='$gender', birth_date='$birth_date', age='$age', contact_no='$contact_no',landline_no = '$landline_no', email_id='$email_id',alt_email = '$alt_email_id',company_name = '$company_name', address='$address', address2='$address2', city='$city', active_flag='$active_flag', service_tax_no='$service_tax_no1', state_id='$state', pan_no ='$cust_pan',source='$cust_source', pro_photo = '$pro_photo', id_photo = '$id_photo', id_no = '$id_no', id_type = '$id_type', mem_no = '$mem_no' where customer_id='$customer_id'");
+	$sq_visa = mysql_query("update customer_master set type = '$cust_type',first_name='$first_name', middle_name='$middle_name', last_name='$last_name', gender='$gender', birth_date='$birth_date', age='$age', contact_no='$contact_no',landline_no = '$landline_no', email_id='$email_id',alt_email = '$alt_email_id',company_name = '$company_name', address='$address', address2='$address2', city='$city', active_flag='$active_flag', service_tax_no='$service_tax_no1', state_id='$state', pan_no ='$cust_pan',source='$cust_source', pro_photo = '$pro_photo', id_photo = '$id_photo', id_no = '$id_no', id_type = '$id_type', mem_no = '$mem_no', type_customer='$type_customer' where customer_id='$customer_id'");
 
 	//update customer leder
 	if($cust_type == 'Corporate' || $cust_type == 'B2B'){

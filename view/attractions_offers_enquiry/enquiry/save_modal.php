@@ -40,16 +40,19 @@ $branch_status = $_POST['branch_status'];
                         <input type="hidden" id="cust_data" name="cust_data" value='<?= get_customer_hint() ?>'>
                     </div>
                     <div class="col-md-3 col-sm-6 mg_bt_10">
+                      <input type="text" class="form-control" id="type_customer" name="type_customer" placeholder="Customer-Persona" title="Customer-Persona" readonly>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mg_bt_10">
                         <input type="text" class="form-control" id="txt_mobile_no" onchange="mobile_validate(this.id);" name="txt_mobile_no" placeholder="*Mobile No" title="Mobile No"> 
                     </div>
                     <div class="col-md-3 col-sm-6 mg_bt_10">
                         <input type="text" class="form-control" id="txt_landline_no" onchange="mobile_validate(this.id);" name="txt_landline_no" placeholder="WhatsApp No with country code" title="WhatsApp No with country code"> 
-                    </div>        
-                    <div class="col-md-3 col-sm-6 mg_bt_10">
-                        <input type="text" class="form-control" id="txt_email_id" name="txt_email_id" placeholder="Email ID" title="Email ID">
-                    </div>   
+                    </div>            
                 </div>
                 <div class="row">
+                    <div class="col-md-3 col-sm-6 mg_bt_10">
+                        <input type="text" class="form-control" id="txt_email_id" name="txt_email_id" placeholder="Email ID" title="Email ID">
+                    </div>
                     <div class="col-md-3 col-sm-6 mg_bt_10">
                         <input type="text" class="form-control" id="location" name="location" placeholder="Location" title="Location">
                     </div>
@@ -185,6 +188,7 @@ $(function(){
        var enquiry_type = $('#enquiry_type').val(); 
        var enquiry = $('#enquiry').val(); 
        var name = $("#txt_name").val(); 
+       var type_customer = $("#type_customer").val();
        var mobile_no = $("#txt_mobile_no").val(); 
        var landline_no = $("#txt_landline_no").val();
        var email_id = $("#txt_email_id").val();
@@ -215,7 +219,7 @@ $(function(){
        }
        
        $('#btn_enq_save').button('loading');
-       var obj = { login_id : login_id, enquiry_type : enquiry_type, name : name, mobile_no : mobile_no, email_id : email_id,location : location, assigned_emp_id : assigned_emp_id , enquiry_specification : enquiry_specification, enquiry_date : enquiry_date, followup_date : followup_date, reference_id : reference_id, enquiry_content : enquiry_content, landline_no : landline_no,enquiry : enquiry , branch_admin_id : branch_admin_id,financial_year_id : financial_year_id};
+       var obj = { login_id : login_id, enquiry_type : enquiry_type, name : name, type_customer : type_customer, mobile_no : mobile_no, email_id : email_id,location : location, assigned_emp_id : assigned_emp_id , enquiry_specification : enquiry_specification, enquiry_date : enquiry_date, followup_date : followup_date, reference_id : reference_id, enquiry_content : enquiry_content, landline_no : landline_no,enquiry : enquiry , branch_admin_id : branch_admin_id,financial_year_id : financial_year_id};
        $.post(
             base_url+"controller/attractions_offers_enquiry/enquiry_master_save_v.php",
             {  mobile_no : mobile_no, email_id : email_id },
@@ -284,6 +288,7 @@ $("#txt_name").autocomplete({
     source: JSON.parse($('#cust_data').val()),
     select: function (event, ui) {
 	  $("#txt_name").val(ui.item.label);
+    $('#type_customer').val(ui.item.type_customer);
     $('#txt_mobile_no').val(ui.item.contact_no);
     $('#txt_email_id').val(ui.item.email_id);
     },

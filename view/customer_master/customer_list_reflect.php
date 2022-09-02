@@ -56,11 +56,12 @@ while($row_customer = mysql_fetch_assoc($sq_customer)){
 		
 	$masked =  str_pad(substr($contact_no, -4), strlen($contact_no), '*', STR_PAD_LEFT);
 	$masked_email =  str_pad(substr($email_id, 4), strlen($email_id), '*', STR_PAD_LEFT);
+	$type_customer = $row_customer['type_customer'];
 	$birth_date =  ($row_customer['birth_date'] == '1970-01-01') ? 'NA': get_date_user($row_customer['birth_date']);
 	$masked_email1 =  ($masked_email == "") ? 'NA' : $masked_email;
 
 	$temp_arr = array("data" =>array(
-		(int)($count), $row_customer['first_name'].' '.$row_customer['last_name'],$birth_date,
+		(int)($count), $row_customer['first_name'].' '.$row_customer['last_name'],$type_customer,$birth_date,
 		'<span onclick="showNum(' .$count. ');" id="phone-y'. $count.'" class="row_value phone">'.$masked.'</span><span id="phone-x'. $count.'" class="hidden" >'.$contact_no.'</span>',
 		'<span onclick="showEmail('. $count.');" id="phone-ye'. $count.'" class="row_value phone">'. $masked_email1 .'</span><span id="phone-xe'. $count.'" class="hidden" >'. $email_id.'</span>',$pro_s,$id_s,
 		'<button class="btn btn-info btn-sm" onclick="customer_display_modal('. $row_customer['customer_id'] .')" title="View Details" data-toggle="tooltip"><i class="fa fa-eye"></i></button><button class="btn btn-info btn-sm" onclick="customer_update_modal('. $row_customer['customer_id'] .')" title="Edit Details" data-toggle="tooltip"><i class="fa fa-pencil-square-o"></i></button><button class="btn btn-info btn-sm" onclick="customer_history_modal('. $row_customer['customer_id'].' )" title="Download Outstanding Payment Summary" data-toggle="tooltip"><i class="fa fa-print"></i></button>'), "bg" => $bg

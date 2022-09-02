@@ -74,6 +74,7 @@ $branch_status = $sq['branch_status'];
 var columns = [
 	{ title : "S_No." },
 	{ title : "Customer_Name" },
+	{ title : "Customer_Persona" },
 	{ title : "Birth_Date" },
 	{ title : "mobile_NO" },
 	{ title : "Email_ID" },

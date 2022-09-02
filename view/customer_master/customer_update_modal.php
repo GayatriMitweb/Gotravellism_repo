@@ -90,6 +90,22 @@ $email_id = $encrypt_decrypt->fnDecrypt($sq_customer['email_id'], $secret_key);
               <div class="col-sm-4 col-xs-12">
                 <input type="text" id="mem_no1" onchange="validate_alphanumeric(this.id);" name="mem_no"  placeholder="Membership Number" value="<?= $sq_customer['mem_no'] ?>" title="Membership Number" style="text-transform: uppercase;">
               </div>
+              <div class="col-sm-4 col-xs-12">
+                  <select name="type_customer1" id="type_customer1" title="Customer-Persona" required>
+                    <option value="<?= $sq_customer['type_customer'] ?>"><?= $sq_customer['type_customer'] ?></option>
+                    <option value="">Customer-Persona</option>
+                    <option value="Squirrel">Squirrel</option>
+                    <option value="Jackal">Jackal</option>
+                    <option value="Langoors">Langoors</option>
+                    <option value="Giraffe">Giraffe</option>
+                    <option value="Sloth-Bear">Sloth-Bear</option>
+                    <option value="Cheetah">Cheetah</option>
+                    <option value="Elephant">Elephant</option>
+                    <option value="Leopard">Leopard</option>
+                    <option value="Hippopotamus">Hippopotamus</option>
+                    <option value="Tiger">Tiger</option>
+                  </select>
+              </div>
               <div  class="div-upload col-md-2" style="margin-bottom: 5px;"  id="div_upload_button">
                 <div id="pro_upload_g1" class="upload-button1"><span>Profile Photo</span></div>
                   <span id="pro_photo_status" ></span>
@@ -197,12 +213,13 @@ corporate_fields_reflect();
         var id_no = $('#id_no1').val();
         var id_type = $('#id_type1').val();
         var mem_no = $('#mem_no1').val();
+        var type_customer = $('#type_customer1').val();
         $('#btn_update').button('loading');
 	      
 	      $.ajax({
 	        type: 'post',
 	        url: base_url+'controller/customer_master/customer_update.php',
-	        data:{ customer_id : customer_id, first_name : first_name, middle_name : middle_name, last_name : last_name, gender : gender, birth_date : birth_date, age : age, contact_no : contact_no, email_id : email_id, address : address,address2 : address2,city:city,active_flag : active_flag, service_tax_no1 : service_tax_no1, landline_no : landline_no, alt_email_id : alt_email_id,company_name : company_name, cust_type : cust_type, cust_state : cust_state,cust_pan : cust_pan,cust_source:cust_source ,  pro_photo:pro_photo, id_photo : id_photo, id_no : id_no, id_type : id_type, mem_no : mem_no},
+	        data:{ customer_id : customer_id, first_name : first_name, middle_name : middle_name, last_name : last_name, gender : gender, birth_date : birth_date, age : age, contact_no : contact_no, email_id : email_id, address : address,address2 : address2,city:city,active_flag : active_flag, service_tax_no1 : service_tax_no1, landline_no : landline_no, alt_email_id : alt_email_id,company_name : company_name, cust_type : cust_type, cust_state : cust_state,cust_pan : cust_pan,cust_source:cust_source ,  pro_photo:pro_photo, id_photo : id_photo, id_no : id_no, id_type : id_type, mem_no : mem_no, type_customer : type_customer},
 	        success: function(result){
           var msg = result.split('--');				
             if(msg[0]=='error'){

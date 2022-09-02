@@ -123,7 +123,15 @@ $enquiry_content_arr1 = json_decode($enquiry_content, true);
 
 												<?php echo "<label>Enquiry Type<em>:</em></label> ".$sq_enq_info['enquiry'] ?>
 
-												</span>							                
+												</span>
+												
+												<span class="main_block">
+
+												<i class="fa fa-angle-double-right cost_arrow" aria-hidden="true"></i>
+
+												<?php echo "<label>Customer-Persona<em>:</em></label> ".$sq_enq_info['type_customer'] ?>
+
+												</span>
 
 											</div>
 

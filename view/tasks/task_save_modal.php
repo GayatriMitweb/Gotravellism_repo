@@ -96,14 +96,20 @@ $branch_status = $sq['branch_status']
                       include "../../model/app_settings/branchwise_filteration.php";
                     $sq_booking = mysql_query($query);
                     while($row_booking = mysql_fetch_assoc($sq_booking))
-                    {
-                        $sq_traveler = mysql_query("select m_honorific, first_name, last_name from package_travelers_details where booking_id='$row_booking[booking_id]' and status!='Cancel'");
-                        while($row_traveler = mysql_fetch_assoc($sq_traveler))
-                        {
+                    {   
+                      $pass_count= mysql_num_rows(mysql_query("select * from package_travelers_details where booking_id='$row_booking[booking_id]'"));
+                      $cancle_count= mysql_num_rows(mysql_query("select * from package_travelers_details where booking_id='$row_booking[booking_id]' and status='Cancel'"));
+                      if($pass_count!=$cancle_count){
+                      $sq_customer = mysql_fetch_assoc(mysql_query("select * from customer_master where customer_id='$row_booking[customer_id]'"));
+                      if($sq_customer['type'] == 'Corporate'||$sq_customer['type'] == 'B2B'){
                          ?>
-                         <option value="<?php echo $row_booking['booking_id'] ?>"><?php echo "File No-".$row_booking['booking_id']."-".$row_traveler['m_honorific']." ".$row_traveler['first_name']." ".$row_traveler['last_name']; ?></option>
+                         <option value="<?php echo $row_booking['booking_id'] ?>"><?php echo "File No-".$row_booking['booking_id']."-"." ".$sq_customer['company_name']; ?></option>
+                         <?php }
+                          else{ ?>
+                          <option value="<?php echo $row_booking['booking_id'] ?>"><?php echo "File No-".$row_booking['booking_id']."-"." ".$sq_customer['first_name']." ".$sq_customer['last_name']; ?></option>
                          <?php    
                         }    
+                      }
                     }    
                  ?>
             </select>

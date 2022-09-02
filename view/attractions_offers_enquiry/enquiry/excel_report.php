@@ -380,11 +380,12 @@ $objPHPExcel->setActiveSheetIndex(0)
         ->setCellValue('K'.$row_count, "Followup Date")
 
         ->setCellValue('L'.$row_count, "Enquiry Type")
+        ->setCellValue('M'.$row_count, "Customer-Persona")
 
-        ->setCellValue('M'.$row_count, "Allocate To");
+        ->setCellValue('N'.$row_count, "Allocate To");
 
-$objPHPExcel->getActiveSheet()->getStyle('B'.$row_count.':M'.$row_count)->applyFromArray($header_style_Array);
-$objPHPExcel->getActiveSheet()->getStyle('B'.$row_count.':M'.$row_count)->applyFromArray($borderArray);
+$objPHPExcel->getActiveSheet()->getStyle('B'.$row_count.':N'.$row_count)->applyFromArray($header_style_Array);
+$objPHPExcel->getActiveSheet()->getStyle('B'.$row_count.':N'.$row_count)->applyFromArray($borderArray);
 
 
 while($row = mysql_fetch_assoc($sq_enquiries)){
@@ -434,12 +435,13 @@ while($row = mysql_fetch_assoc($sq_enquiries)){
                 ->setCellValue('K'.$row_count, get_datetime_user($row['followup_date'])  )
 
                 ->setCellValue('L'.$row_count, $row['enquiry']  )
+                ->setCellValue('M'.$row_count, $row['type_customer']  )
 
-                ->setCellValue('M'.$row_count, $sq_emp['first_name'].' '.$sq_emp['last_name'] );
+                ->setCellValue('N'.$row_count, $sq_emp['first_name'].' '.$sq_emp['last_name'] );
 
-    $objPHPExcel->getActiveSheet()->getStyle('B'.$row_count.':M'.$row_count)->applyFromArray($content_style_Array);
+    $objPHPExcel->getActiveSheet()->getStyle('B'.$row_count.':N'.$row_count)->applyFromArray($content_style_Array);
 
-    $objPHPExcel->getActiveSheet()->getStyle('B'.$row_count.':M'.$row_count)->applyFromArray($borderArray);                    
+    $objPHPExcel->getActiveSheet()->getStyle('B'.$row_count.':N'.$row_count)->applyFromArray($borderArray);                    
 
 }
 

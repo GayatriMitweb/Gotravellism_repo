@@ -87,6 +87,21 @@ $branch_admin_id = $_SESSION['branch_admin_id'];
               <div class="col-sm-4 col-xs-12">
                 <input type="text" id="mem_no" onchange="validate_alphanumeric(this.id);" name="mem_no"  placeholder="Membership Number" title="Membership Number" style="text-transform: uppercase;">
               </div>
+              <div class="col-sm-4 col-xs-12">
+                  <select name="type_customer" id="type_customer" title="Customer-Persona" required>
+                    <option value="">Customer-Persona</option>
+                    <option value="Squirrel">Squirrel</option>
+                    <option value="Jackal">Jackal</option>
+                    <option value="Langoors">Langoors</option>
+                    <option value="Giraffe">Giraffe</option>
+                    <option value="Sloth-Bear">Sloth-Bear</option>
+                    <option value="Cheetah">Cheetah</option>
+                    <option value="Elephant">Elephant</option>
+                    <option value="Leopard">Leopard</option>
+                    <option value="Hippopotamus">Hippopotamus</option>
+                    <option value="Tiger">Tiger</option>
+                  </select>
+              </div>
               <div  class="div-upload col-md-2" style="margin-bottom: 5px;"  id="div_upload_button">
                 <div id="pro_upload_g" class="upload-button1"><span>Profile Photo</span></div>
                   <span id="pro_photo_status" ></span>
@@ -189,12 +204,13 @@ $('#frm_customer_save').validate({
       var id_no = $('#id_no').val();
       var id_type = $('#id_type').val();
       var mem_no = $('#mem_no').val();
+      var type_customer = $('#type_customer').val();
       $('#btn_save').button('loading');
       
       $.ajax({
         type: 'post',
         url: base_url+'controller/customer_master/customer_save.php',
-        data:{ first_name : first_name, middle_name : middle_name, last_name : last_name, gender : gender, birth_date : birth_date, age : age, contact_no : contact_no, email_id : email_id, address : address,address2 : address2,city:city,  active_flag : active_flag ,service_tax_no : service_tax_no, landline_no : landline_no, alt_email_id : alt_email_id,company_name : company_name, cust_type : cust_type,state : state, cust_pan : cust_pan, branch_admin_id : branch_admin_id,cust_source:cust_source, pro_photo:pro_photo, id_photo : id_photo, id_no : id_no, id_type : id_type, mem_no : mem_no},
+        data:{ first_name : first_name, middle_name : middle_name, last_name : last_name, gender : gender, birth_date : birth_date, age : age, contact_no : contact_no, email_id : email_id, address : address,address2 : address2,city:city,  active_flag : active_flag ,service_tax_no : service_tax_no, landline_no : landline_no, alt_email_id : alt_email_id,company_name : company_name, cust_type : cust_type,state : state, cust_pan : cust_pan, branch_admin_id : branch_admin_id,cust_source:cust_source, pro_photo:pro_photo, id_photo : id_photo, id_no : id_no, id_type : id_type, mem_no : mem_no, type_customer : type_customer},
         success: function(result){
 
           var result_arr = result.split('==');
