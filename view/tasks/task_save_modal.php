@@ -159,7 +159,7 @@ $branch_status = $sq['branch_status']
 </div>
 
 <script>
-$('#cmb_booking_id, #enquiry_id, #tour_id, #tour_group_id,#assign_to').select2();
+$('#cmb_booking_id, #enquiry_id, #tour_id, #tour_group_id,#assign_to,#booking_id').select2();
 $('#due_date').datetimepicker({ format:'d-m-Y H:i' });
 $(function(){
   $('#frm_task_save').validate({
