@@ -94,16 +94,16 @@ $email_id = $encrypt_decrypt->fnDecrypt($sq_customer['email_id'], $secret_key);
                   <select name="type_customer1" id="type_customer1" title="Customer-Persona" required>
                     <option value="<?= $sq_customer['type_customer'] ?>"><?= $sq_customer['type_customer'] ?></option>
                     <option value="">Customer-Persona</option>
-                    <option value="Squirrel">Squirrel</option>
-                    <option value="Jackal">Jackal</option>
-                    <option value="Langoors">Langoors</option>
-                    <option value="Giraffe">Giraffe</option>
-                    <option value="Sloth-Bear">Sloth-Bear</option>
-                    <option value="Cheetah">Cheetah</option>
-                    <option value="Elephant">Elephant</option>
-                    <option value="Leopard">Leopard</option>
-                    <option value="Hippopotamus">Hippopotamus</option>
-                    <option value="Tiger">Tiger</option>
+                    <option value="Squirrel - No budget for package, Only safari booking, Dormitory Stay, Non AC stay">Squirrel - No budget for package, Only safari booking, Dormitory Stay, Non AC stay</option>
+                    <option value="Jackal - Low Budget Less Loyal">Jackal - Low Budget Less Loyal</option>
+                    <option value="Langoors - Wants Perfection but Pay Less">Langoors - Wants Perfection but Pay Less</option>
+                    <option value="Giraffe - Loyal Humble Follower and Easy to Close">Giraffe - Loyal Humble Follower and Easy to Close</option>
+                    <option value="Sloth-Bear - Leisure, Experience Lover, Not a Fan of Nature.">Sloth-Bear - Leisure,Experience Lover,Not a Fan of Nature.</option>
+                    <option value="Cheetah - Flexible, Loyal and Smart, Negotiator">Cheetah - Flexible,Loyal and Smart,Negotiator</option>
+                    <option value="Elephant - Attention to Details, Honest, Intellectual, Value for Money, Loyal">Elephant - Attention to Details,Honest,Intellectual,Value for Money,Loyal</option>
+                    <option value="Leopard - Price Centric, Disloyal, Opportunistic">Leopard - Price Centric,Disloyal,Opportunistic</option>
+                    <option value="Hippopotamus - Wealthy, Seek Attention and Perfection, Self lovers.">Hippopotamus - Wealthy,Seek Attention and Perfection,Self lovers.</option>
+                    <option value="Tiger - Entrepreneurs, Upper Management, Celebrities. Value for Time and Money">Tiger - Entrepreneurs,Upper Management,Celebrities. Value for Time and Money</option>
                   </select>
               </div>
               <div  class="div-upload col-md-2" style="margin-bottom: 5px;"  id="div_upload_button">
