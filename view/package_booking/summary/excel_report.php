@@ -168,7 +168,7 @@ if($booking_id!=""){
 if($from_date!="" && $to_date!=""){
     $from_date = date('Y-m-d', strtotime($from_date));
     $to_date = date('Y-m-d', strtotime($to_date));
-    $query .= " and booking_date between '$from_date' and '$to_date'";
+    $query .= " and tour_from_date between '$from_date' and '$to_date'";
 }
 if($cust_type != ""){
     $query .= " and customer_id in (select customer_id from customer_master where type = '$cust_type')";
