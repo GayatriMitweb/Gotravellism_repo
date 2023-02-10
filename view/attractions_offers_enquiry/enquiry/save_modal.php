@@ -95,7 +95,7 @@ $branch_status = $_POST['branch_status'];
                               <option value="0">Admin</option>
                               <?php
                              }
-                             if($role=='Admin' || ($branch_status!='yes' && $role=='Branch Admin')){
+                             if($role=='Admin' || $emp_id =='12' || ($branch_status!='yes' && $role=='Branch Admin')){
                               $query = "select * from emp_master where active_flag='Active' order by first_name desc";
                             $sq_emp = mysql_query($query);
                             while($row_emp = mysql_fetch_assoc($sq_emp)){
